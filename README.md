@@ -20,7 +20,8 @@ Both the emmiter and the recipient will be able to see a log in the screen showi
 
 ### Handling data
 
-The fact that two separate users in separate computers will be able to communicate mean that we will need to handle and stode data somewhere and make it possible to share between the two.
+The fact that two separate users in separate computers will be able to communicate mean that we will need to handle and store data and make it possible to share between the two.
+Docker volumes is the main way to do that.
 
 ## Usage
 
