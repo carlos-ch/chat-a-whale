@@ -6,9 +6,12 @@ This live chat allows two users to communicate in real time. This app makes use 
 
 In it's simplest form, Chat-a-whale wil let users:
 
-- authenticate through google account
+- authenticate through id
+  -login with existing id
+  - create new id
 - send a message
 - receive a message
+  The app will be using the localstorage to identify user
 
 Both the emmiter and the recipient will be able to see a log in the screen showing:
 
