@@ -1,6 +1,7 @@
 // import './App.css';
-import { ContactsProvider } from '../context/ContactsProvider';
-import { ConversationsProvider } from '../context/ConversationsProvider';
+import { ContactsProvider } from '../contexts/ContactsProvider';
+import { ConversationsProvider } from '../contexts/ConversationsProvider';
+import { SocketProvider } from '../contexts/SocketProvider';
 import useLocalStorage from '../hooks/useLocalStorage';
 import Dashboard from './Dashboard';
 import { Login } from './Login';
@@ -10,11 +11,13 @@ function App() {
   return (
     <>
       {id ? (
-        <ContactsProvider>
-          <ConversationsProvider id={id}>
-            <Dashboard id={id} />
-          </ConversationsProvider>
-        </ContactsProvider>
+        <SocketProvider id={id}>
+          <ContactsProvider>
+            <ConversationsProvider id={id}>
+              <Dashboard id={id} />
+            </ConversationsProvider>
+          </ContactsProvider>
+        </SocketProvider>
       ) : (
         <Login onIdSubmit={setId} />
       )}

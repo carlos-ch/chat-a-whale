@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
-import { useConversations } from '../context/ConversationsProvider';
+import { useConversations } from '../contexts/ConversationsProvider';
 
 const OpenConversation = () => {
   const [text, setText] = useState('');
@@ -17,7 +17,6 @@ const OpenConversation = () => {
     setText('');
   };
 
-  console.log(selectedConversation);
   return (
     <div className="d-flex flex-grow-1 flex-column">
       Open converssse
