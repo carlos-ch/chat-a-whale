@@ -30,23 +30,23 @@ const OpenConversation = () => {
               <div
                 key={index}
                 ref={lastMessage ? setRef : null}
-                className={` my-1 d-flex flex-column ${
+                className={`my-1 d-flex flex-column ${
                   message.senderIsMe ? 'align-self-end' : ''
                 }`}
               >
                 <div
-                  className={`small ${
-                    message.senderIsMe ? ' text-white bg-primary' : ''
-                  }`}
-                >
-                  {message.senderIsMe ? 'You: ' : message.senderName}
-                </div>
-                <div
-                  className={`px-2 ${
+                  className={`rounded px-2 py-1 ${
                     message.senderIsMe ? 'text-white bg-primary' : ''
                   }`}
                 >
                   {message.message}
+                </div>
+                <div
+                  className={`small text-muted ${
+                    message.senderIsMe ? 'text-right' : ''
+                  }`}
+                >
+                  {message.senderIsMe ? 'You' : message.senderName}
                 </div>
               </div>
             );

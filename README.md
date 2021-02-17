@@ -31,7 +31,7 @@ Docker volumes is the main way to do that.
 ```js
 var chatAWhale = require('chat-a-whale');
 
-console.log('hello warld');
+console.log('hello world');
 ```
 
 outputs
@@ -42,19 +42,21 @@ hello warld
 
 ## API
 
+<!--
 ```js
 var chatAWhale = require('chat-a-whale');
 ```
 
-See [api_formatting.md](api_formatting.md) for tips.
+See [api_formatting.md](api_formatting.md) for tips. -->
 
 ## Install
 
+<!--
 With [npm](https://npmjs.org/) installed, run
 
 ```
 $ npm install chat-a-whale
-```
+``` -->
 
 ## Acknowledgments
 
