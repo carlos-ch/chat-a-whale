@@ -13,10 +13,11 @@ export const ConversationsProvider = ({ children, id }) => {
     'conversations',
     []
   );
+  const [alerts, setAlerts] = useState([]);
   const [selectedConversationIndex, setSelectedConversationIndex] = useState();
+  // const [alerts, setAlerts] = useState([]);
   const { contacts } = useContacts();
   const socket = useSocket();
-  console.log(socket);
 
   const createConversation = recipients => {
     setConversations(previousState => {
@@ -49,9 +50,30 @@ export const ConversationsProvider = ({ children, id }) => {
     },
     [setConversations]
   );
+  /* alert all users that someone connected
+   */
+  const addAlertToChat = useCallback(
+    ({ id }) => {
+      console.log(id + ' disconnected!!');
+      setAlerts([id + ' has disconnected!']);
+    },
+    [setAlerts]
+  );
+
+  /* alert when a user disconnects */
   useEffect(() => {
     if (socket == null) return;
+    socket.on('user-disconnect', addAlertToChat);
+    return () => {
+      socket.off('user-disconnect');
+    };
+  }, [addAlertToChat, socket]);
+
+  useEffect(() => {
+    if (socket == null) return;
+    // socket.on('user-connected', addAlertToChat);
     socket.on('receive-message', addMessageToChat);
+
     return () => {
       socket.off('receive-message');
     };
@@ -62,6 +84,7 @@ export const ConversationsProvider = ({ children, id }) => {
     addMessageToChat({ recipients, message, sender: id });
   };
 
+  /* formatter returns array with necessary readable information */
   const formattedConversations = conversations.map((conversation, index) => {
     const recipients = conversation.recipients.map(id => {
       const contactFull = contacts.find(contact => contact.id === id);
@@ -80,6 +103,7 @@ export const ConversationsProvider = ({ children, id }) => {
     return { ...conversation, messages, selected, recipients };
   });
   const value = {
+    alerts,
     conversations: formattedConversations,
     selectedConversation: formattedConversations[selectedConversationIndex],
     createConversation,

@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from 'react';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { Badge, Button, Form, InputGroup } from 'react-bootstrap';
 import { useConversations } from '../contexts/ConversationsProvider';
 
 const OpenConversation = () => {
   const [text, setText] = useState('');
   const setRef = useCallback(node => {
     if (node) node.scrollIntoView();
-  });
-  const { selectedConversation, sendMessage } = useConversations();
+  }, []);
+  const { selectedConversation, sendMessage, alerts } = useConversations();
+  console.log(alerts[0]);
   const handleSubmit = e => {
     e.preventDefault();
     sendMessage(
@@ -19,9 +20,8 @@ const OpenConversation = () => {
 
   return (
     <div className="d-flex flex-grow-1 flex-column">
-      Open converssse
       <div className="flex-grow-1 overflow-auto">
-        <div className="d-flex flex-column align-items-start justify-content-end px-3">
+        <div className="d-flex flex-column justify-content-end px-3 pt-3">
           {selectedConversation.messages.map((message, index) => {
             const lastMessage =
               selectedConversation.messages.length - 1 === index;
@@ -35,7 +35,9 @@ const OpenConversation = () => {
               >
                 <div
                   className={`rounded px-2 py-1 ${
-                    message.senderIsMe ? 'text-white bg-primary' : ''
+                    message.senderIsMe
+                      ? 'text-white bg-primary'
+                      : 'bg-light align-self-start'
                   }`}
                 >
                   {message.message}
@@ -51,6 +53,11 @@ const OpenConversation = () => {
             );
           })}
         </div>
+        {alerts.length > 0 ? (
+          <Badge pill variant="light">
+            {alerts[0]}
+          </Badge>
+        ) : null}
       </div>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="m-2">

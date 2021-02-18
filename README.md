@@ -19,28 +19,43 @@ Both the emmiter and the recipient will be able to see a log in the screen showi
 - who has _logged out_
 - _message_
 - _username_ attached to respective the message
-- time / date
+- (time / date)
 
 ### Handling data
 
 The fact that two separate users in separate computers will be able to communicate mean that we will need to handle and store data and make it possible to share between the two.
 Docker volumes is the main way to do that.
 
+### File Structure
+
+This repository includes two folders: one for the react app (client-side) and the second for the server with socket.io(server-side).
+
+Please start the server and the react-app simultanuously in different terminals in order use chat-a-whale
+
 ## Usage
 
-```js
-var chatAWhale = require('chat-a-whale');
+_To run this repository on your local machine_
 
-console.log('hello world');
-```
-
-outputs
+- Clone repositopry
+  Run in your CLI
 
 ```
-hello warld
+git clone https://github.com/carlos-ch/chat-a-whale.git
 ```
 
-## API
+- Install dependancies
+
+Install dependacies on both `server` and `chat-app` folders
+navigate to `cd chat-a-whale/server` and `cd chat-a-whale/chat-app`
+
+- Start app
+  Then, in each terminal run
+
+```
+npm start
+```
+
+<!-- ## API -->
 
 <!--
 ```js
@@ -49,7 +64,7 @@ var chatAWhale = require('chat-a-whale');
 
 See [api_formatting.md](api_formatting.md) for tips. -->
 
-## Install
+<!-- ## Install -->
 
 <!--
 With [npm](https://npmjs.org/) installed, run
@@ -64,8 +79,9 @@ chat-a-whale was inspired by the need of discovery. Docker is a fascinating tech
 
 ## See Also
 
-- ...(link)
-- ...
+- [socket.io chat app](https://socket.io/get-started/chat)
+- [web dev simplified tutorial](https://www.youtube.com/watch?v=tBr-PybP_9c)
+- [socket.io acknowledgements](https://iabhishek.dev/post/building-a-multimedia-chat-app-using-express-socketio-redis-and-docker-part-2)
 
 ## License
 
